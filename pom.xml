@@ -6,6 +6,9 @@
     <artifactId>tds-tecnologia-blog</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    <description>
+        Profile tomcat para execucao no servidor tomcat
+    </description>
 
     <name>tds-tecnologia-blog</name>
 
@@ -27,11 +30,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.weld.servlet</groupId>
-            <artifactId>weld-servlet</artifactId>
-            <version>2.4.1.Final</version>
-        </dependency>
+      
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
@@ -44,6 +43,19 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    
+    <profiles>
+        <profile>
+            <id>tomcat</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.weld.servlet</groupId>
+                    <artifactId>weld-servlet</artifactId>
+                    <version>2.4.1.Final</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
