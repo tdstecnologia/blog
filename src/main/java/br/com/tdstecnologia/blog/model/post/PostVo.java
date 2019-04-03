@@ -1,6 +1,6 @@
 package br.com.tdstecnologia.blog.model.post;
 
-import java.io.Serializable;
+import br.com.tdstecnologia.blog.model.abstracts.AbstractVo;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb01_post")
-public class PostVo implements Serializable{
+public class PostVo extends AbstractVo<PostVo>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
