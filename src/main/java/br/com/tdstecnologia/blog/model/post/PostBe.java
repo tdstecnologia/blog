@@ -1,15 +1,31 @@
 package br.com.tdstecnologia.blog.model.post;
 
-public class PostBe {
+import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+public class PostBe extends AbstractBe {
 
     private PostDao postDao;
 
     public PostBe() {
-        this.postDao = new PostDao();
     }
 
     public void salvarPost(PostVo postVo) {
-        getPostDao().salvarPost(postVo);
+        EntityManager em = getManager();
+        EntityTransaction tx = getTransacao();
+        try {
+            this.postDao = new PostDao(em);
+
+            begin(tx);
+            getPostDao().salvarPost(postVo);
+            commit(tx);
+        } catch (Exception e) {
+            e.printStackTrace();
+            rollback(tx);
+        } finally {
+            close(em);
+        }
     }
 
     public PostDao getPostDao() {
