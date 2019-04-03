@@ -2,11 +2,26 @@ package br.com.tdstecnologia.blog.model.post;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tb01_post")
 public class PostVo implements Serializable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    
+    @Column(name = "titulo")
     private String titulo;
+    
+    @Column(name = "texto")
     private String texto;
 
     public PostVo() {
