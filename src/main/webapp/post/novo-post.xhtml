@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/WEB-INF/templates/default-template.xhtml">
 
@@ -22,7 +23,7 @@
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls">
                                     <label>Titulo</label>
-                                    <h:inputText id="post-titulo" value="#{novoPostController.postVo.titulo}" required="true" requiredMessage="Título é obrigatório" class="form-control" pt:placeholder="Título" ></h:inputText>
+                                    <h:inputTextarea id="post-titulo" value="#{novoPostController.postVo.titulo}" rows="2" required="true" requiredMessage="Título é obrigatório" class="form-control" pt:placeholder="Título" ></h:inputTextarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
@@ -31,15 +32,11 @@
 
                             <div class="control-group">
                                 <div class="form-group floating-label-form-group controls">
-                                    <label>Texto</label>
-                                    <h:inputTextarea id="post-texto" value="#{novoPostController.postVo.texto}" required="true" requiredMessage="Texto é obrigatório"  class="form-control" pt:placeholder="Texto">
-
-                                    </h:inputTextarea>
-                                    <p class="help-block text-danger"></p>
+                                    <p:textEditor id="editor" widgetVar="editorWidget" value="#{novoPostController.postVo.texto}" height="300"  />
                                 </div>
                             </div>
-
                             <br/>
+
 
                             <div id="success"></div>
                             <div class="form-group">
