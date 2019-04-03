@@ -63,7 +63,7 @@ public class PostVo implements Serializable{
 
     @Override
     public String toString() {
-        return "PostVo{" + "id=" + id + ", titulo=" + titulo + '}';
+        return "---- POST ----" + "\nID: " + id + "\nTITULO: " + titulo + "\nTEXTO: "+texto + '}';
     }
     
     
