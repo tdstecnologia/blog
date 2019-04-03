@@ -17,9 +17,9 @@
 
                         <h:form>
                             <div class="control-group">
-
-                                <h:message errorClass="alert alert-warning" for="post-titulo" ></h:message>
-
+                                <h:messages errorClass="alert alert-warning" infoClass="alert alert-success" warnClass="alert alert-warning" style="list-style-type: none;" ></h:messages>
+                            </div>
+                            <div class="control-group">
                                 <div class="form-group floating-label-form-group controls">
                                     <label>Titulo</label>
                                     <h:inputText id="post-titulo" value="#{novoPostController.postVo.titulo}" required="true" requiredMessage="Título é obrigatório" class="form-control" pt:placeholder="Título" ></h:inputText>
@@ -30,9 +30,6 @@
                             <br/>
 
                             <div class="control-group">
-                                
-                                <h:message errorClass="alert alert-warning" for="post-texto" ></h:message>
-
                                 <div class="form-group floating-label-form-group controls">
                                     <label>Texto</label>
                                     <h:inputTextarea id="post-texto" value="#{novoPostController.postVo.texto}" required="true" requiredMessage="Texto é obrigatório"  class="form-control" pt:placeholder="Texto">
