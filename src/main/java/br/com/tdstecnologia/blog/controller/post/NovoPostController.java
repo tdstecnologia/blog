@@ -1,5 +1,6 @@
 package br.com.tdstecnologia.blog.controller.post;
 
+import br.com.tdstecnologia.blog.model.post.PostBe;
 import br.com.tdstecnologia.blog.model.post.PostVo;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 public class NovoPostController implements Serializable {
 
     private PostVo postVo;
+    private PostBe postBe;
 
     public NovoPostController() {
     }
@@ -18,6 +20,7 @@ public class NovoPostController implements Serializable {
     @PostConstruct
     private void init() {
         this.postVo = new PostVo();
+        this.postBe = new PostBe();
     }
 
     public String flowNovoPost() {
@@ -25,8 +28,7 @@ public class NovoPostController implements Serializable {
     }
 
     public void salvarPost() {
-        System.out.println("Salvando...");
-        System.out.println("Post: " + postVo.toString());
+        getPostBe().salvarPost(postVo);
     }
 
     public PostVo getPostVo() {
@@ -37,4 +39,8 @@ public class NovoPostController implements Serializable {
         this.postVo = postVo;
     }
 
+    private PostBe getPostBe() {
+        return postBe;
+    }
+    
 }
