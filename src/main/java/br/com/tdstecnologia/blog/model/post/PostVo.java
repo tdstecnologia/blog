@@ -11,16 +11,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb01_post")
-public class PostVo extends AbstractVo<PostVo>{
+public class PostVo extends AbstractVo<PostVo> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Column(name = "titulo")
     private String titulo;
-    
+
+    @Column(name = "resumo")
+    private String resumo;
+
     @Column(name = "texto")
     private String texto;
 
@@ -43,6 +46,14 @@ public class PostVo extends AbstractVo<PostVo>{
         this.titulo = titulo;
     }
 
+    public String getResumo() {
+        return resumo;
+    }
+
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
+    }
+    
     public String getTexto() {
         return texto;
     }
@@ -78,9 +89,7 @@ public class PostVo extends AbstractVo<PostVo>{
 
     @Override
     public String toString() {
-        return "---- POST ----" + "\nID: " + id + "\nTITULO: " + titulo + "\nTEXTO: "+texto + '}';
+        return "---- POST ----" + "\nID: " + id + "\nTITULO: " + titulo + "\nTEXTO: " + texto + '}';
     }
-    
-    
-    
+
 }
