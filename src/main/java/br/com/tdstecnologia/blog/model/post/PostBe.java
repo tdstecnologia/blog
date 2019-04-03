@@ -28,6 +28,19 @@ public class PostBe extends AbstractBe {
         }
     }
 
+    public PostVo listarPosts() {
+        EntityManager em = getManager();
+        PostVo posts = new PostVo();
+        try {
+            posts = new PostDao(em).listarPosts();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(em);
+        }
+        return posts;
+    }
+
     public PostDao getPostDao() {
         return postDao;
     }
