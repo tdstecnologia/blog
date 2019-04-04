@@ -1,5 +1,6 @@
 package br.com.tdstecnologia.blog.model.post;
 
+import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -11,7 +12,7 @@ public class PostBe extends AbstractBe {
     public PostBe() {
     }
 
-    public void salvarPost(PostVo postVo) {
+    public void salvarPost(PostVo postVo) throws Exception {
         EntityManager em = getManager();
         EntityTransaction tx = getTransacao();
         try {
@@ -20,21 +21,26 @@ public class PostBe extends AbstractBe {
             begin(tx);
             getPostDao().salvarPost(postVo);
             commit(tx);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (DaoException e) {
             rollback(tx);
+            throw e;
+        } catch (Exception e) {
+            rollback(tx);
+            throw e;
         } finally {
             close(em);
         }
     }
 
-    public PostVo listarPosts() {
+    public PostVo listarPosts() throws DaoException {
         EntityManager em = getManager();
         PostVo posts = new PostVo();
         try {
             posts = new PostDao(em).listarPosts();
+        } catch (DaoException e) {
+            throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            throw e;
         } finally {
             close(em);
         }

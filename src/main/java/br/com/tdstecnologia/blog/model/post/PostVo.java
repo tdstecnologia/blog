@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,8 @@ import javax.persistence.Table;
 public class PostVo extends AbstractVo<PostVo> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb01_post_sequence")
+    @SequenceGenerator(name = "tb01_post_sequence", sequenceName = "seq_tb01_post")
     @Column(name = "id")
     private Long id;
 
@@ -53,7 +55,7 @@ public class PostVo extends AbstractVo<PostVo> {
     public void setResumo(String resumo) {
         this.resumo = resumo;
     }
-    
+
     public String getTexto() {
         return texto;
     }

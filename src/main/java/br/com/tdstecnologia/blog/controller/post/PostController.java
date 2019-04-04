@@ -1,5 +1,6 @@
 package br.com.tdstecnologia.blog.controller.post;
 
+import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.jsf.Jsf;
 import br.com.tdstecnologia.blog.model.post.PostBe;
 import br.com.tdstecnologia.blog.model.post.PostVo;
@@ -28,7 +29,7 @@ public class PostController implements Serializable {
     public void listarPost() {
         try {
             getPostsVo().setListVo(getPostBe().listarPosts().getListVo());
-        } catch (Exception e) {
+        } catch (DaoException e) {
             Jsf.Msg.erro(e);
         }
     }
