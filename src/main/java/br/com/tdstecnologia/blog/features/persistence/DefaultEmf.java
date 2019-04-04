@@ -5,12 +5,14 @@ import javax.persistence.Persistence;
 
 public class DefaultEmf {
 
-    private final static String BLOG_MYSQL_DS = "BLOG_PU";
+    private final static String BLOG_MYSQL_DS = "BLOG_MYSQL_PU";
+    private final static String BLOG_PG_DS = "BLOG_PG_PU";
     private final EntityManagerFactory emf;
     private static final DefaultEmf INSTANCE = new DefaultEmf();
 
     private DefaultEmf() {
-        this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_MYSQL_DS);
+        //this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS, new PersistenceProperties().getConfigPersistence());
+        this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS);
     }
 
     public static DefaultEmf getInstance() {
