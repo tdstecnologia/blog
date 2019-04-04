@@ -37,6 +37,10 @@ public class PostController implements Serializable {
     public String flowIndex() {
         return "/index";
     }
+    
+     public String flowVisualizarPostCompleto() {
+        return "/post/post-completo";
+    }
 
     public PostVo getPostsVo() {
         return postsVo;
