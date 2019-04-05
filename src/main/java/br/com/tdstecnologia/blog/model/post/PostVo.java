@@ -1,12 +1,32 @@
 package br.com.tdstecnologia.blog.model.post;
 
-import java.io.Serializable;
+import br.com.tdstecnologia.blog.model.abstracts.AbstractVo;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-public class PostVo implements Serializable{
+@Entity
+@Table(name = "tb01_post")
+public class PostVo extends AbstractVo<PostVo> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tb01_post_sequence")
+    @SequenceGenerator(name = "tb01_post_sequence", sequenceName = "seq_tb01_post")
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "titulo")
     private String titulo;
+
+    @Column(name = "resumo")
+    private String resumo;
+
+    @Column(name = "texto")
     private String texto;
 
     public PostVo() {
@@ -26,6 +46,14 @@ public class PostVo implements Serializable{
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getResumo() {
+        return resumo;
+    }
+
+    public void setResumo(String resumo) {
+        this.resumo = resumo;
     }
 
     public String getTexto() {
@@ -63,9 +91,7 @@ public class PostVo implements Serializable{
 
     @Override
     public String toString() {
-        return "PostVo{" + "id=" + id + ", titulo=" + titulo + '}';
+        return "---- POST ----" + "\nID: " + id + "\nTITULO: " + titulo + "\nTEXTO: " + texto + '}';
     }
-    
-    
-    
+
 }
