@@ -4,7 +4,7 @@
 
     <groupId>br.com.tdstecnologia</groupId>
     <artifactId>tds-tecnologia-blog</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>war</packaging>
     <description>
         Profile tomcat para execucao no servidor tomcat
