@@ -11,8 +11,8 @@ public class DefaultEmf {
     private static final DefaultEmf INSTANCE = new DefaultEmf();
 
     private DefaultEmf() {
-        //this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS, new PersistenceProperties().getConfigPersistence());
-        this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS);
+        this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS, new PersistenceProperties().getConfigPersistence());
+        //this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS);
     }
 
     public static DefaultEmf getInstance() {
