@@ -3,17 +3,43 @@ package br.com.tdstecnologia.blog.model.usuario;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractVo;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tb02_usuario")
 public class UsuarioVo extends AbstractVo<UsuarioVo>{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "nome")
     private String nome;
+    
+    @Column(name = "email")
     private String email;
+    
+    @Column(name = "senha")
     private String senha;
+    
+    @Column(name = "ativo")
     private Boolean ativo;
+    
+    @Column(name = "data_criacao")
     private Date dataCriacao;
+    
+    @Column(name = "data_ativacao")
     private Date dataAtivacao;
+    
+    @Column(name = "token_ativacao")
     private String tokenAtivacao;
+    
+    @Column(name = "data_criacao_token")
     private Date dataCriacaoToken;
 
     public UsuarioVo() {

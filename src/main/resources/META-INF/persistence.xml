@@ -15,6 +15,7 @@
   </persistence-unit>
   <persistence-unit name="BLOG_PG_PU" transaction-type="RESOURCE_LOCAL">
     <class>br.com.tdstecnologia.blog.model.post.PostVo</class>
+    <class>br.com.tdstecnologia.blog.model.usuario.UsuarioVo</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
