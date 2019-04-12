@@ -14,20 +14,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="index.html">#{menu.inicio}</a>
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="Novo Post" action="#{novoPostController.flowNovoPost()}" ></h:commandLink>
+                            <h:commandLink class="nav-link" value="#{menu.novoPost}" action="#{novoPostController.flowNovoPost()}" ></h:commandLink>
                         </h:form>
                     </li>
                     <li class="nav-item">
-                         <h:form>
-                             <h:commandLink class="nav-link" value="Cadastro" action="#{novoUsuarioController.flowNovoUsuario()}" ></h:commandLink>
+                        <h:form>
+                            <h:commandLink class="nav-link" value="#{menu.cadastroUSuario}" action="#{novoUsuarioController.flowNovoUsuario()}" ></h:commandLink>
                         </h:form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                 </ul>
             </div>
