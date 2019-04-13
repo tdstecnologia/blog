@@ -2,6 +2,7 @@ package br.com.tdstecnologia.blog.model.usuario;
 
 import br.com.tdstecnologia.blog.features.email.UtilEmail;
 import br.com.tdstecnologia.blog.features.exceptions.DaoException;
+import br.com.tdstecnologia.blog.features.exceptions.ValidacaoException;
 import br.com.tdstecnologia.blog.features.security.MD5;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
 import javax.persistence.EntityManager;
@@ -14,13 +15,14 @@ public class UsuarioBe extends AbstractBe {
     public UsuarioBe() {
     }
 
-    public void salvarUsuario(UsuarioVo usuarioVo) throws Exception {
+    public void salvarUsuario(final UsuarioVo usuarioVo) throws Exception {
         EntityManager em = getManager();
         EntityTransaction tx = getTransacao();
         try {
             this.usuarioDao = new UsuarioDao(em);
 
             begin(tx);
+            validarFormularioCadastroUsuario(usuarioVo);
             getUsuarioDao().salvarUsuario(usuarioVo);
             usuarioVo.setTokenAtivacao(MD5.gerarHashConfirmacaoCadastro());
             UtilEmail.confirmacaoDeCadastro(usuarioVo);
@@ -44,6 +46,16 @@ public class UsuarioBe extends AbstractBe {
         this.usuarioDao = usuarioDao;
     }
 
-    
-    
+    public void validarFormularioCadastroUsuario(final UsuarioVo usuarioVo) throws Exception {
+        isUsuarioJaExiste(usuarioVo);
+    }
+
+    public void isUsuarioJaExiste(final UsuarioVo usuarioVo) throws DaoException, Exception {
+        EntityManager em = getManager();
+        UsuarioVo us = new UsuarioDao(em).pesquisarUsuarioPorEmail(usuarioVo);
+        if (us != null) {
+            throw new ValidacaoException("Usuário já cadastrado");
+        }
+    }
+
 }
