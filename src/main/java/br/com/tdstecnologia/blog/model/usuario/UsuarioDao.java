@@ -29,4 +29,16 @@ public class UsuarioDao extends AbstractDao {
             throw new DaoException(e);
         }
     }
+    
+     public UsuarioVo pesquisarUsuarioPorEmailSenha(final UsuarioVo usuarioVo) throws DaoException {
+        try {
+            TypedQuery<UsuarioVo> query = getEm().createQuery("SELECT u FROM UsuarioVo u WHERE u.email = :email AND u.senha = :senha", UsuarioVo.class);
+            query.setParameter("email", usuarioVo.getEmail());
+            query.setParameter("senha", usuarioVo.getSenha());
+            UsuarioVo usuario = query.getSingleResult();
+            return usuario;
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
 }
