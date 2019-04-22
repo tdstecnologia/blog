@@ -7,6 +7,7 @@ import br.com.tdstecnologia.blog.features.security.MD5;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 
 public class UsuarioBe extends AbstractBe {
 
@@ -25,7 +26,7 @@ public class UsuarioBe extends AbstractBe {
             validarFormularioCadastroUsuario(usuarioVo);
             getUsuarioDao().salvarUsuario(usuarioVo);
             usuarioVo.setTokenAtivacao(MD5.gerarHashConfirmacaoCadastro());
-            UtilEmail.confirmacaoDeCadastro(usuarioVo);
+            //UtilEmail.confirmacaoDeCadastro(usuarioVo);
             commit(tx);
         } catch (DaoException e) {
             rollback(tx);
@@ -47,7 +48,11 @@ public class UsuarioBe extends AbstractBe {
     }
 
     public void validarFormularioCadastroUsuario(final UsuarioVo usuarioVo) throws Exception {
-        isUsuarioJaExiste(usuarioVo);
+        try{
+            isUsuarioJaExiste(usuarioVo);
+        }catch(DaoException e){
+        }
+        
     }
 
     public void isUsuarioJaExiste(final UsuarioVo usuarioVo) throws DaoException, Exception {

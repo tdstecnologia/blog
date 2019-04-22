@@ -5,7 +5,9 @@ import br.com.tdstecnologia.blog.features.jsf.Jsf;
 import br.com.tdstecnologia.blog.model.post.PostBe;
 import br.com.tdstecnologia.blog.model.post.PostVo;
 import java.io.Serializable;
+import java.util.Locale;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,6 +21,7 @@ public class PostController implements Serializable {
     public PostController() {
     }
 
+    
     @PostConstruct
     private void init() {
         this.postsVo = new PostVo();

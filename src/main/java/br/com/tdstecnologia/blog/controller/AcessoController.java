@@ -18,17 +18,22 @@ public class AcessoController implements Serializable {
 
     }
 
-    public void login() {
+    public String login() {
         try {
             getAcessoBe().login(usuarioVo);
-            Jsf.Msg.sucesso("Você está logado");
+            return "/index?faces-redirect=true";
         } catch (Exception e) {
             Jsf.Msg.erro(e);
         }
+        return null;
     }
 
     public String flowLogin() {
         return "/login";
+    }
+    
+    public String flowIndex() {
+        return "/index?faces-redirect=true";
     }
 
     public AcessoBe getAcessoBe() {

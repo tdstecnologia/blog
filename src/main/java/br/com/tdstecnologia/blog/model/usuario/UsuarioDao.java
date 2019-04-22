@@ -3,6 +3,7 @@ package br.com.tdstecnologia.blog.model.usuario;
 import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractDao;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 public class UsuarioDao extends AbstractDao {
@@ -29,14 +30,16 @@ public class UsuarioDao extends AbstractDao {
             throw new DaoException(e);
         }
     }
-    
-     public UsuarioVo pesquisarUsuarioPorEmailSenha(final UsuarioVo usuarioVo) throws DaoException {
+
+    public UsuarioVo pesquisarUsuarioPorEmailSenha(final UsuarioVo usuarioVo) throws DaoException {
         try {
             TypedQuery<UsuarioVo> query = getEm().createQuery("SELECT u FROM UsuarioVo u WHERE u.email = :email AND u.senha = :senha", UsuarioVo.class);
             query.setParameter("email", usuarioVo.getEmail());
             query.setParameter("senha", usuarioVo.getSenha());
             UsuarioVo usuario = query.getSingleResult();
             return usuario;
+        } catch (NoResultException e) {
+            throw new DaoException("Verifique os dados informados", e);
         } catch (Exception e) {
             throw new DaoException(e);
         }
