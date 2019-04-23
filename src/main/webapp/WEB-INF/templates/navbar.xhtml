@@ -29,6 +29,9 @@
                         <h:form>
                             <h:commandLink rendered="#{!acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.login}" action="#{acessoController.flowLogin()}" ></h:commandLink>
                         </h:form>
+                        <h:form>
+                            <h:commandLink rendered="#{acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.logout}" action="#{acessoController.flowLogOut()}" ></h:commandLink>
+                        </h:form>
                     </li>
                     <li class="nav-item">
                         <h:form>

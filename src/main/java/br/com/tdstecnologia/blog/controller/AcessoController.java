@@ -32,6 +32,10 @@ public class AcessoController implements Serializable {
         return "/login";
     }
     
+    public String flowLogOut() {
+        return "/logout?faces-redirect=true";
+    }
+    
     public String flowIndex() {
         return "/index?faces-redirect=true";
     }
