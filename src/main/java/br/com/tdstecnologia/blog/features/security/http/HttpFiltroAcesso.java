@@ -29,7 +29,7 @@ public class HttpFiltroAcesso implements Filter {
         try {
             System.out.println("URL: "+request.getRequestURI());
             if (ControleAcesso.validarAcessoEmPaginaRestrita(request.getRequestURI())) {
-                if (!ControleAcesso.isUsuarioLogado()) {
+                if (!ControleAcesso.isUsuarioLogado(request.getSession(false))) {
                     throw new UsuarioNaoLogadoException();
                 }
             } else if (request.getRequestURI().contains("logout.xhtml")) {
@@ -41,6 +41,7 @@ public class HttpFiltroAcesso implements Filter {
             request.setAttribute("errorMessage", e.getMessage());
             response.sendRedirect(request.getContextPath() + "/error.xhtml?faces-redirect=true");
         } catch (UsuarioNaoLogadoException e) {
+            System.out.println(e.getMessage());
             ControleAcesso.logout(request.getSession(false));
             request.setAttribute("errorMessage", e.getMessage());
             response.sendRedirect(request.getContextPath() + "/login.xhtml?faces-redirect=true");

@@ -1,12 +1,15 @@
 package br.com.tdstecnologia.blog.model.post;
 
 import br.com.tdstecnologia.blog.model.abstracts.AbstractVo;
+import br.com.tdstecnologia.blog.model.usuario.UsuarioVo;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,6 +31,10 @@ public class PostVo extends AbstractVo<PostVo> {
 
     @Column(name = "texto")
     private String texto;
+    
+    @ManyToOne
+    @JoinColumn(name = "autor")
+    private UsuarioVo autor;
 
     public PostVo() {
     }
@@ -64,6 +71,16 @@ public class PostVo extends AbstractVo<PostVo> {
         this.texto = texto;
     }
 
+    public UsuarioVo getAutor() {
+        return autor;
+    }
+
+    public void setAutor(UsuarioVo autor) {
+        this.autor = autor;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

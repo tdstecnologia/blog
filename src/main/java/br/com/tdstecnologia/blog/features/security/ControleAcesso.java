@@ -11,6 +11,18 @@ public class ControleAcesso {
 
     public static final String USUARIO_LOGADO = "USUARIO_LOGADO";
 
+    public static boolean isUsuarioLogado(final HttpSession sessao) {
+        try {
+            if (sessao != null) {
+                UsuarioVo usuarioVo = (UsuarioVo) sessao.getAttribute(USUARIO_LOGADO);
+                return (usuarioVo != null && usuarioVo.getId() > 0);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
     public static boolean isUsuarioLogado() {
         try {
             return getUsuarioLogado() != null;
@@ -26,7 +38,11 @@ public class ControleAcesso {
             UsuarioVo usuarioVo = (UsuarioVo) sessao.getAttribute(USUARIO_LOGADO);
             if (usuarioVo != null && usuarioVo.getId() != null) {
                 return usuarioVo;
+            } else {
+                System.out.println("usuario null");
             }
+        } else {
+            System.out.println("sessão null");
         }
         return null;
     }
@@ -90,7 +106,6 @@ public class ControleAcesso {
     public static Set<String> paginaComAcessoRestrito() {
         Set<String> paginas = new CopyOnWriteArraySet<>();
         paginas.add("/post/novo-post.xhtml");
-
 
         return paginas;
     }
