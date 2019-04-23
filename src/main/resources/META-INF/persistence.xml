@@ -26,6 +26,7 @@
       <property name="hibernate.format_sql" value="true"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
       <property name="hibernate.hbm2dll.auto" value="create" />
+      <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/dados.sql"/>
     </properties>
   </persistence-unit>
 </persistence>
