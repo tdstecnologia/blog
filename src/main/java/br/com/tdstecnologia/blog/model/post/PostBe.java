@@ -3,6 +3,7 @@ package br.com.tdstecnologia.blog.model.post;
 import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.security.ControleAcesso;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
+import br.com.tdstecnologia.blog.model.usuario.UsuarioVo;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -39,6 +40,37 @@ public class PostBe extends AbstractBe {
         PostVo posts = new PostVo();
         try {
             posts = new PostDao(em).listarPosts();
+        } catch (DaoException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            close(em);
+        }
+        return posts;
+    }
+    
+    
+    public PostVo listarMeusPosts(final UsuarioVo usuarioVo) throws DaoException {
+        EntityManager em = getManager();
+        PostVo posts = new PostVo();
+        try {
+            posts = new PostDao(em).listarMeusPosts(usuarioVo);
+        } catch (DaoException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            close(em);
+        }
+        return posts;
+    }
+    
+    public PostVo consultarPostPorId(final PostVo postVo) throws DaoException {
+        EntityManager em = getManager();
+        PostVo posts = new PostVo();
+        try {
+            posts = new PostDao(em).consultarPostPorId(postVo);
         } catch (DaoException e) {
             throw e;
         } catch (Exception e) {

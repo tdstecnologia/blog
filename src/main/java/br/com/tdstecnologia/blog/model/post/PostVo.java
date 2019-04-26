@@ -2,6 +2,7 @@ package br.com.tdstecnologia.blog.model.post;
 
 import br.com.tdstecnologia.blog.model.abstracts.AbstractVo;
 import br.com.tdstecnologia.blog.model.usuario.UsuarioVo;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,6 +32,9 @@ public class PostVo extends AbstractVo<PostVo> {
 
     @Column(name = "texto")
     private String texto;
+    
+    @Column(name = "data_publicacao")
+    private Date dataPublicacao;
     
     @ManyToOne
     @JoinColumn(name = "autor")
@@ -71,6 +75,14 @@ public class PostVo extends AbstractVo<PostVo> {
         this.texto = texto;
     }
 
+    public Date getDataPublicacao() {
+        return dataPublicacao;
+    }
+
+    public void setDataPublicacao(Date dataPublicacao) {
+        this.dataPublicacao = dataPublicacao;
+    }
+    
     public UsuarioVo getAutor() {
         return autor;
     }

@@ -13,54 +13,57 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PostController implements Serializable {
-
+public class PostCompletoController implements Serializable {
+    
     private PostVo postsVo;
     private PostBe postBe;
-    private FacesContext fc = FacesContext.getCurrentInstance();
-
-    public PostController() {
-        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-        System.out.println("POST ID: "+params.get("post_id"));
+    private FacesContext fc;
+    
+    public PostCompletoController() {
+        
     }
-
+    
     @PostConstruct
     private void init() {
         this.postsVo = new PostVo();
         this.postBe = new PostBe();
-        listarPost();
+        fc = FacesContext.getCurrentInstance();
     }
-
-    public void listarPost() {
+    
+    public void consultarPost() {
         try {
-            getPostsVo().setListVo(getPostBe().listarPosts().getListVo());
+            Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
+            PostVo param = new PostVo();
+            param.setId(Long.valueOf(params.get("post_id")));
+            
+            setPostsVo(getPostBe().consultarPostPorId(param));
         } catch (DaoException e) {
             Jsf.Msg.erro(e);
         }
     }
-
+    
     public String flowIndex() {
         return "/index";
     }
-
-    public String flowVisualizarPostCompleto(final String postId) {
-        return "/post/post-completo?faces-redirect=true&post_id=".concat(postId);
+    
+    public String flowVisualizarPostCompleto() {
+        return "/post/post-completo?faces-redirect=true&post_id=zzz_9999";
     }
-
+    
     public PostVo getPostsVo() {
         return postsVo;
     }
-
+    
     public void setPostsVo(PostVo postsVo) {
         this.postsVo = postsVo;
     }
-
+    
     public PostBe getPostBe() {
         return postBe;
     }
-
+    
     public void setPostBe(PostBe postBe) {
         this.postBe = postBe;
     }
-
+    
 }

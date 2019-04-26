@@ -38,11 +38,7 @@ public class ControleAcesso {
             UsuarioVo usuarioVo = (UsuarioVo) sessao.getAttribute(USUARIO_LOGADO);
             if (usuarioVo != null && usuarioVo.getId() != null) {
                 return usuarioVo;
-            } else {
-                System.out.println("usuario null");
             }
-        } else {
-            System.out.println("sessão null");
         }
         return null;
     }

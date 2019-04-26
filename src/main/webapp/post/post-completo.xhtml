@@ -11,23 +11,23 @@
 
         <ui:define name="body" >
 
+            #{postCompletoController.consultarPost()}
 
-            <f:param  value="#{post}">
-                <h2 class="post-title">
-                    <h:outputText value="#{post.titulo}" > </h:outputText>
-                </h2>
-                
-                <br/>
-                
-                <h:outputText value="#{post.resumo}"> </h:outputText>
+            <h2 class="post-title">
+                <h:outputText value="#{post.titulo}" > </h:outputText>
+            </h2>
 
-                <hr/>
+            <br/>
 
-                <h:outputText value="#{post.texto}" escape="false"> </h:outputText>
-            </f:param>
-
+            <h:outputText value="#{post.resumo}"> </h:outputText>
 
             <hr/>
+
+            <h:outputText value="#{post.texto}" escape="false"> </h:outputText>
+
+            <br/>
+            <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
+
         </ui:define>
 
     </ui:composition>
