@@ -36,6 +36,9 @@ public class PostVo extends AbstractVo<PostVo> {
     @Column(name = "data_publicacao")
     private Date dataPublicacao;
     
+    @Column(name = "data_criacao")
+    private Date dataCriacao;
+    
     @ManyToOne
     @JoinColumn(name = "autor")
     private UsuarioVo autor;
@@ -81,6 +84,14 @@ public class PostVo extends AbstractVo<PostVo> {
 
     public void setDataPublicacao(Date dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
     
     public UsuarioVo getAutor() {

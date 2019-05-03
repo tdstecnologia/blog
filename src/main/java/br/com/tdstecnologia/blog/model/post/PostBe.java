@@ -4,6 +4,7 @@ import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.security.ControleAcesso;
 import br.com.tdstecnologia.blog.model.abstracts.AbstractBe;
 import br.com.tdstecnologia.blog.model.usuario.UsuarioVo;
+import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -22,6 +23,8 @@ public class PostBe extends AbstractBe {
 
             begin(tx);
             postVo.setAutor(ControleAcesso.getUsuarioLogado());
+            postVo.setDataCriacao(new Date());
+            postVo.setDataPublicacao(new Date());
             getPostDao().salvarPost(postVo);
             commit(tx);
         } catch (DaoException e) {
