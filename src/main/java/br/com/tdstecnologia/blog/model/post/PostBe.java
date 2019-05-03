@@ -37,6 +37,26 @@ public class PostBe extends AbstractBe {
             close(em);
         }
     }
+    
+    public void salvarAlteracaoPost(PostVo postVo) throws Exception {
+        EntityManager em = getManager();
+        EntityTransaction tx = getTransacao();
+        try {
+            this.postDao = new PostDao(em);
+
+            begin(tx);
+            getPostDao().salvarAlteracaoPost(postVo);
+            commit(tx);
+        } catch (DaoException e) {
+            rollback(tx);
+            throw e;
+        } catch (Exception e) {
+            rollback(tx);
+            throw e;
+        } finally {
+            close(em);
+        }
+    }
 
     public PostVo listarPosts() throws DaoException {
         EntityManager em = getManager();
@@ -84,6 +104,25 @@ public class PostBe extends AbstractBe {
         return posts;
     }
 
+     public void excluirPost(final PostVo postVo) throws Exception {
+        EntityManager em = getManager();
+        EntityTransaction tx = getTransacao();
+        try {
+            begin(tx);
+            PostDao postDao = new PostDao(em);
+            postDao.excluirPost(postDao.consultarPostPorId(postVo));
+            commit(tx);
+        } catch (DaoException e) {
+            rollback(tx);
+            throw e;
+        } catch (Exception e) {
+            rollback(tx);
+            throw e;
+        } finally {
+            close(em);
+        }
+    }
+    
     public PostDao getPostDao() {
         return postDao;
     }

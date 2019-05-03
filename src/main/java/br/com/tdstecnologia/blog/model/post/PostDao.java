@@ -14,9 +14,17 @@ public class PostDao {
         this.em = em;
     }
 
-    public void salvarPost(PostVo postVo) throws DaoException {
+    public void salvarPost(final PostVo postVo) throws DaoException {
         try {
             this.em.persist(postVo);
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void salvarAlteracaoPost(final PostVo postVo) throws DaoException {
+        try {
+            this.em.merge(postVo);
         } catch (Exception e) {
             throw new DaoException(e);
         }
@@ -29,7 +37,7 @@ public class PostDao {
             throw new DaoException(e);
         }
     }
-    
+
     public PostVo listarPosts() throws DaoException {
         try {
             TypedQuery query = em.createQuery("SELECT p FROM PostVo p", PostVo.class);
@@ -41,17 +49,25 @@ public class PostDao {
             throw new DaoException(e);
         }
     }
-    
+
     public PostVo listarMeusPosts(final UsuarioVo usuarioVo) throws DaoException {
         try {
             TypedQuery query = em.createQuery("SELECT p FROM PostVo p WHERE p.autor=:autor", PostVo.class);
-            System.out.println("AUTOR: "+usuarioVo.getId() +" : "+usuarioVo.getNome());
+            System.out.println("AUTOR: " + usuarioVo.getId() + " : " + usuarioVo.getNome());
             query.setParameter("autor", usuarioVo);
             List<PostVo> posts = query.getResultList();
             PostVo postVo = new PostVo();
             postVo.setListVo(posts);
-            System.out.println("POSTS: "+postVo.getListVo().size());
+            System.out.println("POSTS: " + postVo.getListVo().size());
             return postVo;
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public void excluirPost(final PostVo postVo) throws DaoException {
+        try {
+            this.em.remove(postVo);
         } catch (Exception e) {
             throw new DaoException(e);
         }

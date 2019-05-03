@@ -13,19 +13,19 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PostCompletoController implements Serializable {
+public class AlterarPostController implements Serializable {
 
-    private PostVo postsVo;
+    private PostVo postVo;
     private PostBe postBe;
     private FacesContext fc;
 
-    public PostCompletoController() {
+    public AlterarPostController() {
 
     }
 
     @PostConstruct
     private void init() {
-        this.postsVo = new PostVo();
+        this.postVo = new PostVo();
         this.postBe = new PostBe();
         fc = FacesContext.getCurrentInstance();
     }
@@ -35,33 +35,32 @@ public class PostCompletoController implements Serializable {
             Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
             PostVo param = new PostVo();
             param.setId(Long.valueOf(params.get("post_id")));
-          
-            setPostsVo(getPostBe().consultarPostPorId(param));
+            setPostVo(getPostBe().consultarPostPorId(param));
         } catch (DaoException e) {
             Jsf.Msg.erro(e);
         }
     }
 
-    public String excluirPost() {
+    public String salvarAlteracao() {
         try {
-            getPostBe().excluirPost(getPostsVo());
-            return "/index?faces-redirect=true";
+            getPostBe().salvarAlteracaoPost(getPostVo());
+            return "/post/post-completo?faces-redirect=true&post_id=".concat(getPostVo().getId().toString());
         } catch (Exception e) {
             Jsf.Msg.erro(e.getMessage());
         }
         return null;
     }
 
-    public String flowIndex() {
-        return "/index";
+    public String flowAlterarPost(final String postId){
+        return "/post/alterar-post?faces-redirect=true&post_id=".concat(postId);
+    }
+    
+    public PostVo getPostVo() {
+        return postVo;
     }
 
-    public PostVo getPostsVo() {
-        return postsVo;
-    }
-
-    public void setPostsVo(PostVo postsVo) {
-        this.postsVo = postsVo;
+    public void setPostVo(PostVo postsVo) {
+        this.postVo = postsVo;
     }
 
     public PostBe getPostBe() {

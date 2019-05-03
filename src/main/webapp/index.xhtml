@@ -14,10 +14,10 @@
                     <p:autoUpdate />
                 </p:messages>
             </div>
-            <ui:repeat var="post" value="#{postController.postsVo.listVo}">
+            <ui:repeat var="post" value="#{indexController.postsVo.listVo}">
                 <div class="post-preview">
                     <h:form>
-                        <h:commandLink action="#{postController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
+                        <h:commandLink action="#{indexController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
                             <h2 class="post-title">
                                 <h:outputText value="#{post.titulo}" ></h:outputText>
                             </h2>

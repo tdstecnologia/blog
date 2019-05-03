@@ -42,7 +42,7 @@ public class Jsf {
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }
 
-        private static void erro(final String msg) {
+        public static void erro(final String msg) {
             FacesMessage fm = new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, null);
             FacesContext.getCurrentInstance().addMessage(null, fm);
         }

@@ -1,5 +1,6 @@
-package br.com.tdstecnologia.blog.controller.post;
+package br.com.tdstecnologia.blog.controller;
 
+import br.com.tdstecnologia.blog.controller.post.*;
 import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.jsf.Jsf;
 import br.com.tdstecnologia.blog.model.post.PostBe;
@@ -13,13 +14,13 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class PostController implements Serializable {
+public class IndexController implements Serializable {
 
     private PostVo postsVo;
     private PostBe postBe;
     private FacesContext fc = FacesContext.getCurrentInstance();
 
-    public PostController() {
+    public IndexController() {
         Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
         System.out.println("POST ID: "+params.get("post_id"));
     }

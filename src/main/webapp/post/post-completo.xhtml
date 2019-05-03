@@ -14,19 +14,35 @@
             #{postCompletoController.consultarPost()}
 
             <h2 class="post-title">
-                <h:outputText value="#{post.titulo}" > </h:outputText>
+                <h:outputText value="#{postCompletoController.postsVo.titulo}" > </h:outputText>
             </h2>
 
             <br/>
 
-            <h:outputText value="#{post.resumo}"> </h:outputText>
+            <h:outputText value="#{postCompletoController.postsVo.resumo}"> </h:outputText>
 
             <hr/>
 
-            <h:outputText value="#{post.texto}" escape="false"> </h:outputText>
+            <h:outputText value="#{postCompletoController.postsVo.texto}" escape="false"> </h:outputText>
 
             <br/>
-            <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
+            <p class="post-meta">Por <a href="#"><h:outputText value="#{postCompletoController.postsVo.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{postCompletoController.postsVo.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
+
+            <div class="form-group d-flex justify-content-center">
+                <h:form>
+                    <p:growl id="message" showDetail="true" />
+                    <p:commandButton class="btn btn-danger" value="Excluir Post" rendered="#{acessoWeb.usuarioLogado}" action="${postCompletoController.excluirPost()}" update="message">
+                        <p:confirm header="Confirmação" message="Confirma exclusão do post?" icon="pi pi-exclamation-triangle" />
+                    </p:commandButton>
+
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+                        <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+                    </p:confirmDialog>
+
+                    <p:commandButton class="btn btn-primary" value="ALTERAR" rendered="#{acessoWeb.usuarioLogado}" action="#{alterarPostController.flowAlterarPost(postCompletoController.postsVo.id)}"/>
+                </h:form>              
+            </div>
 
         </ui:define>
 

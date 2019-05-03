@@ -22,7 +22,7 @@ public class ControleAcesso {
         }
         return false;
     }
-    
+
     public static boolean isUsuarioLogado() {
         try {
             return getUsuarioLogado() != null;
@@ -102,6 +102,7 @@ public class ControleAcesso {
     public static Set<String> paginaComAcessoRestrito() {
         Set<String> paginas = new CopyOnWriteArraySet<>();
         paginas.add("/post/novo-post.xhtml");
+        paginas.add("/post/alterar-post.xhtml");
 
         return paginas;
     }
@@ -110,7 +111,6 @@ public class ControleAcesso {
         if (uri == null || uri.trim().isEmpty()) {
             return false;
         }
-
         for (String pagina : paginaComAcessoRestrito()) {
             if (uri.contains(pagina)) {
                 return true;
