@@ -12,7 +12,10 @@
 
             <h:form>
                 <div class="control-group">
-                    <h:messages errorClass="alert alert-warning" infoClass="alert alert-success" warnClass="alert alert-warning" style="list-style-type: none;" ></h:messages>
+                    <p:messages id="messages"  showDetail="false" showIcon="false" closable="true">
+                        <p:autoUpdate />
+                    </p:messages>
+
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls">
