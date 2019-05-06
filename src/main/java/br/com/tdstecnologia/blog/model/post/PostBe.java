@@ -103,6 +103,22 @@ public class PostBe extends AbstractBe {
         }
         return posts;
     }
+    
+    public PostVo consultarPostPorIdAutor(final PostVo param) throws DaoException {
+        EntityManager em = getManager();
+        PostVo post = new PostVo();
+        try {
+            param.setAutor(ControleAcesso.getUsuarioLogado());
+            post = new PostDao(em).consultarPostPorIdAutor(param);
+        } catch (DaoException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            close(em);
+        }
+        return post;
+    }
 
      public void excluirPost(final PostVo postVo) throws Exception {
         EntityManager em = getManager();

@@ -4,6 +4,7 @@ import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.model.usuario.UsuarioVo;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 public class PostDao {
@@ -49,12 +50,24 @@ public class PostDao {
             throw new DaoException(e);
         }
     }
+    
+    public PostVo consultarPostPorIdAutor(final PostVo param) throws DaoException {
+        try {
+            TypedQuery<PostVo> query = em.createQuery("SELECT p FROM PostVo p WHERE p.id = :id AND p.autor=:autor", PostVo.class);
+            query.setParameter("id", param.getId());
+            query.setParameter("autor", param.getAutor());
+            return query.getSingleResult();
+        }catch(NoResultException e){
+            throw new DaoException("Nenhum registro encontrado");
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
 
-    public PostVo listarMeusPosts(final UsuarioVo usuarioVo) throws DaoException {
+    public PostVo listarMeusPosts(final UsuarioVo param) throws DaoException {
         try {
             TypedQuery query = em.createQuery("SELECT p FROM PostVo p WHERE p.autor=:autor", PostVo.class);
-            System.out.println("AUTOR: " + usuarioVo.getId() + " : " + usuarioVo.getNome());
-            query.setParameter("autor", usuarioVo);
+            query.setParameter("autor", param);
             List<PostVo> posts = query.getResultList();
             PostVo postVo = new PostVo();
             postVo.setListVo(posts);

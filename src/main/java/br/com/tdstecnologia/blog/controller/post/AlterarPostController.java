@@ -5,9 +5,7 @@ import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.jsf.Jsf;
 import br.com.tdstecnologia.blog.model.post.PostBe;
 import br.com.tdstecnologia.blog.model.post.PostVo;
-import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -19,20 +17,20 @@ public class AlterarPostController extends AbstractController {
     private PostBe postBe;
 
     public AlterarPostController() {
-
     }
 
     @PostConstruct
     private void init() {
         this.postVo = new PostVo();
         this.postBe = new PostBe();
+        
     }
 
     public void consultarPost() {
         try {
             PostVo param = new PostVo();
             param.setId(Long.valueOf(getParam("post_id")));
-            setPostVo(getPostBe().consultarPostPorId(param));
+            setPostVo(getPostBe().consultarPostPorIdAutor(param));
         } catch (DaoException e) {
             Jsf.Msg.erro(e);
         }
