@@ -12,7 +12,7 @@ import static org.hibernate.cfg.AvailableSettings.JPA_JDBC_PASSWORD;
 
 public class PersistenceProperties {
     
-    private static final String DATABASE_URL = "DATABASE_URL";
+    public static final String DATABASE_URL = "DATABASE_URL";
     
     public Properties getConfigPersistence() {
         try {
@@ -39,7 +39,7 @@ public class PersistenceProperties {
     
     private Map<String, String> extrairInformacaoDaUrl() {
         Map<String, String> mapJdbcProps = new HashMap<>();
-        String url = System.getenv("DATABASE_URL");
+        String url = System.getenv(DATABASE_URL);
         System.out.println("DATABASE_URL: ".concat(url));
         
         url = url.substring(url.indexOf("//") + 2);

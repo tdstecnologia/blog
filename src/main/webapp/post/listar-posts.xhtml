@@ -11,33 +11,24 @@
 
         <ui:define name="body" >
 
-            <!-- Main Content -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
+            <ui:repeat var="post" value="#{listarPostController.postVo.listVo}">
+                <div class="post-preview">
+                    <h:form>
+                        <h:commandLink action="#{postController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
+                            <h2 class="post-title">
+                                <h:outputText value="#{post.titulo}" ></h:outputText>
+                            </h2>
+                        </h:commandLink>
+                    </h:form>
+                    <h5 class="post-meta">
+                        <h:outputText value="#{post.resumo}" ></h:outputText>
+                    </h5>
 
-                        <ui:repeat var="post" value="#{listarPostController.postVo.listVo}">
-                            <div class="post-preview">
-                                <h:form>
-                                    <h:commandLink action="#{postController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
-                                        <h2 class="post-title">
-                                            <h:outputText value="#{post.titulo}" ></h:outputText>
-                                        </h2>
-                                    </h:commandLink>
-                                </h:form>
-                                <h5 class="post-meta">
-                                    <h:outputText value="#{post.resumo}" ></h:outputText>
-                                </h5>
-
-                                <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
-                            </div>
-                            <hr/>
-                        </ui:repeat>
-
-                    </div>
+                    <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
                 </div>
-            </div>
-            <hr/>
+                <hr/>
+            </ui:repeat>
+
         </ui:define>
 
     </ui:composition>

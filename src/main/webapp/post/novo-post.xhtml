@@ -10,50 +10,37 @@
 
         <ui:define name="body" >
 
-            <!-- Main Content -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-10 mx-auto">
-
-
-                        <h:form>
-                            <div class="control-group">
-                                <h:messages errorClass="alert alert-warning" infoClass="alert alert-success" warnClass="alert alert-warning" style="list-style-type: none;" ></h:messages>
-                            </div>
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls">
-                                    <label>Titulo</label>
-                                    <h:inputTextarea id="post-titulo" value="#{novoPostController.postVo.titulo}" rows="2" required="true" requiredMessage="Título é obrigatório" class="form-control" pt:placeholder="Título" ></h:inputTextarea>
-                                </div>
-                            </div>
-                            <br/>
-                            
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls">
-                                    <label>Titulo</label>
-                                    <h:inputTextarea id="post-resumo" value="#{novoPostController.postVo.resumo}" rows="3" required="true" requiredMessage="Resumo é obrigatório" class="form-control" pt:placeholder="Resumo" ></h:inputTextarea>
-                                </div>
-                            </div>
-                            <br/>
-
-                            <div class="control-group">
-                                <div class="form-group floating-label-form-group controls">
-                                    <p:textEditor id="editor" widgetVar="editorWidget" value="#{novoPostController.postVo.texto}" height="300"  />
-                                </div>
-                            </div>
-                            <br/>
-
-
-                            <div id="success"></div>
-                            <div class="form-group">
-                                <h:commandButton class="btn btn-primary" value="SALVAR" action="${novoPostController.salvarPost()}" >
-                                </h:commandButton>
-                            </div>
-                        </h:form>
+            <h:form>
+                <div class="control-group">
+                    <h:messages errorClass="alert alert-warning" infoClass="alert alert-success" warnClass="alert alert-warning" style="list-style-type: none;" ></h:messages>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Titulo</label>
+                        <h:inputTextarea id="post-titulo" value="#{novoPostController.postVo.titulo}" rows="2" required="true" requiredMessage="Título é obrigatório" class="form-control" pt:placeholder="Título" ></h:inputTextarea>
                     </div>
                 </div>
-            </div>
+                <br/>
 
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Titulo</label>
+                        <h:inputTextarea id="post-resumo" value="#{novoPostController.postVo.resumo}" rows="3" required="true" requiredMessage="Resumo é obrigatório" class="form-control" pt:placeholder="Resumo" ></h:inputTextarea>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <p:textEditor id="editor" widgetVar="editorWidget" value="#{novoPostController.postVo.texto}" height="300"  />
+                    </div>
+                </div>
+
+                <div class="form-group d-flex justify-content-center">
+                    <h:commandButton class="btn btn-primary" value="SALVAR" action="${novoPostController.salvarPost()}" >
+                    </h:commandButton>
+                </div>
+            </h:form>
             <hr/>
         </ui:define>
 

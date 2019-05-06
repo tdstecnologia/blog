@@ -27,7 +27,13 @@ public class HttpFiltroAcesso implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         try {
-            System.out.println("URL: "+request.getRequestURI());
+            if (request.getRequestURI().contains(".css") || request.getRequestURI().contains(".js")) {
+
+            } else {
+                System.out.println("URI: " + request.getRequestURI());
+                System.out.println("URL: " + request.getRequestURL());
+            }
+
             if (ControleAcesso.validarAcessoEmPaginaRestrita(request.getRequestURI())) {
                 if (!ControleAcesso.isUsuarioLogado(request.getSession(false))) {
                     throw new UsuarioNaoLogadoException();

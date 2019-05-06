@@ -11,8 +11,11 @@ public class DefaultEmf {
     private static final DefaultEmf INSTANCE = new DefaultEmf();
 
     private DefaultEmf() {
-        this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS, new PersistenceProperties().getConfigPersistence());
-        //this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS);
+        if(System.getenv().containsKey(PersistenceProperties.DATABASE_URL)){
+            this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS, new PersistenceProperties().getConfigPersistence());
+        }else{
+            this.emf = Persistence.createEntityManagerFactory(DefaultEmf.BLOG_PG_DS);
+        } 
     }
 
     public static DefaultEmf getInstance() {

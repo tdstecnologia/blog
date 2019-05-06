@@ -1,10 +1,10 @@
 package br.com.tdstecnologia.blog.controller.post;
 
+import br.com.tdstecnologia.blog.controller.AbstractController;
 import br.com.tdstecnologia.blog.features.exceptions.DaoException;
 import br.com.tdstecnologia.blog.features.jsf.Jsf;
 import br.com.tdstecnologia.blog.model.post.PostBe;
 import br.com.tdstecnologia.blog.model.post.PostVo;
-import java.io.Serializable;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -13,11 +13,10 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class AlterarPostController implements Serializable {
+public class AlterarPostController extends AbstractController {
 
     private PostVo postVo;
     private PostBe postBe;
-    private FacesContext fc;
 
     public AlterarPostController() {
 
@@ -27,14 +26,12 @@ public class AlterarPostController implements Serializable {
     private void init() {
         this.postVo = new PostVo();
         this.postBe = new PostBe();
-        fc = FacesContext.getCurrentInstance();
     }
 
     public void consultarPost() {
         try {
-            Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
             PostVo param = new PostVo();
-            param.setId(Long.valueOf(params.get("post_id")));
+            param.setId(Long.valueOf(getParam("post_id")));
             setPostVo(getPostBe().consultarPostPorId(param));
         } catch (DaoException e) {
             Jsf.Msg.erro(e);
@@ -51,10 +48,10 @@ public class AlterarPostController implements Serializable {
         return null;
     }
 
-    public String flowAlterarPost(final String postId){
+    public String flowAlterarPost(final String postId) {
         return "/post/alterar-post?faces-redirect=true&post_id=".concat(postId);
     }
-    
+
     public PostVo getPostVo() {
         return postVo;
     }

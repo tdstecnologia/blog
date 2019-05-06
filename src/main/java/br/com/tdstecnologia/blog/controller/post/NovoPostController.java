@@ -25,7 +25,7 @@ public class NovoPostController implements Serializable {
     }
 
     public String flowNovoPost() {
-        return "/post/novo-post";
+        return "/post/novo-post?faces-redirect=true";
     }
 
     public void salvarPost() {

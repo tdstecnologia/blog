@@ -22,7 +22,7 @@
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="#{menu.novoPost}" action="#{novoPostController.flowNovoPost()}" ></h:commandLink>
+                            <h:link class="nav-link" value="#{menu.novoPost}" outcome="/post/novo-post.xhtml" />
                         </h:form>
                     </li>
                     <li class="nav-item">
@@ -40,11 +40,13 @@
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="#{menu.cadastroUSuario}" action="#{novoUsuarioController.flowNovoUsuario()}" ></h:commandLink>
+                            <h:commandLink class="nav-link" rendered="#{!acessoWeb.usuarioLogado}" value="#{menu.cadastroUSuario}" action="#{novoUsuarioController.flowNovoUsuario()}" ></h:commandLink>
                         </h:form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <h:form>
+                            <h:link class="nav-link" outcome="/sobre.xhtml" value="#{menu.sobre}"  ></h:link>
+                        </h:form>
                     </li>
                 </ul>
             </div>

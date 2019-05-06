@@ -24,10 +24,6 @@ public class NovoUsuarioController implements Serializable {
         this.usuarioBe = new UsuarioBe();
     }
 
-    public String flowNovoUsuario() {
-        return "/usuario/novo-usuario";
-    }
-
     public void salvarUsuario() {
         try {
             getUsuarioBe().salvarUsuario(usuarioVo);
