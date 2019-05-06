@@ -43,7 +43,7 @@ public abstract class AbstractBe {
             if (em.isOpen()) {
                 if (em.hashCode() == this.em.hashCode()) {
                     em.close();
-                    System.out.println("Conexão fechada: "+em.isOpen()+" : " + em.hashCode());
+                    System.out.println("Conexão fechada: "+ em.hashCode());
                     em = null;
                 }
             }

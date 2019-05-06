@@ -25,3 +25,8 @@
 #mainNav .navbar-toggler{
     color: whitesmoke;
 }
+
+/* cor nomce usuario logado modo smartphone*/
+#mainNav .navbar-brand {
+    color: whitesmoke;
+}
