@@ -28,10 +28,6 @@ public class ListarPostController implements Serializable {
         this.postBe = new PostBe();
         listarMeusPosts();
     }
-  
-    public String flowMeusPost() {
-        return "/post/listar-posts";
-    }
 
     public void listarMeusPosts() {
         try {

@@ -40,8 +40,11 @@
 
                             <div id="success"></div>
                             <div class="form-group d-flex justify-content-center">
-                                <h:commandButton class="btn btn-primary" value="ENTRAR" action="${acessoController.login()}" >
-                                </h:commandButton>
+                                <h:commandButton class="btn btn-primary" value="ENTRAR" action="${acessoController.login()}" />
+
+                            </div>
+                            <div class="form-group d-flex justify-content-center">
+                                <h:link class="nav-link" rendered="#{!acessoWeb.usuarioLogado}" value="Ainda não sou cadastrado" outcome="/usuario/novo-usuario.xhtml" />
                             </div>
                         </h:form>
                     </div>

@@ -17,30 +17,25 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink class="nav-link" value="#{menu.inicio}" action="#{acessoController.flowIndex()}" ></h:commandLink>
+                            <h:link class="nav-link" value="#{menu.inicio}" outcome="/index.xhtml" />
                         </h:form>
                     </li>
                     <li class="nav-item">
-                        <h:form>
+                        <h:form rendered="#{acessoWeb.usuarioLogado}">
                             <h:link class="nav-link" value="#{menu.novoPost}" outcome="/post/novo-post.xhtml" />
                         </h:form>
                     </li>
                     <li class="nav-item">
                         <h:form rendered="#{acessoWeb.usuarioLogado}">
-                            <h:commandLink class="nav-link" value="#{menu.meusPosts}" action="#{listarPostController.flowMeusPost()}" ></h:commandLink>
+                            <h:link class="nav-link" value="#{menu.meusPosts}" outcome="/post/listar-posts.xhtml"  />
                         </h:form>
                     </li>
                     <li class="nav-item">
                         <h:form>
-                            <h:commandLink rendered="#{!acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.login}" action="#{acessoController.flowLogin()}" ></h:commandLink>
+                            <h:link rendered="#{!acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.login}" outcome="/login.xhtml" />
                         </h:form>
                         <h:form>
-                            <h:commandLink rendered="#{acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.logout}" action="#{acessoController.flowLogOut()}" ></h:commandLink>
-                        </h:form>
-                    </li>
-                    <li class="nav-item">
-                        <h:form>
-                            <h:commandLink class="nav-link" rendered="#{!acessoWeb.usuarioLogado}" value="#{menu.cadastroUSuario}" action="#{novoUsuarioController.flowNovoUsuario()}" ></h:commandLink>
+                            <h:link rendered="#{acessoWeb.usuarioLogado}" class="nav-link" value="#{menu.logout}"  outcome="/logout.xhtml" />
                         </h:form>
                     </li>
                     <li class="nav-item">
