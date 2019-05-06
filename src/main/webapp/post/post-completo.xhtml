@@ -14,24 +14,24 @@
             #{postCompletoController.consultarPost()}
 
             <h2 class="post-title">
-                <h:outputText value="#{postCompletoController.postsVo.titulo}" > </h:outputText>
+                <h:outputText value="#{postCompletoController.postVo.titulo}" > </h:outputText>
             </h2>
 
             <br/>
 
-            <h:outputText value="#{postCompletoController.postsVo.resumo}"> </h:outputText>
+            <h:outputText value="#{postCompletoController.postVo.resumo}"> </h:outputText>
 
             <hr/>
 
-            <h:outputText value="#{postCompletoController.postsVo.texto}" escape="false"> </h:outputText>
+            <h:outputText value="#{postCompletoController.postVo.texto}" escape="false"> </h:outputText>
 
             <br/>
-            <p class="post-meta">Por <a href="#"><h:outputText value="#{postCompletoController.postsVo.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{postCompletoController.postsVo.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
+            <p class="post-meta">Por <a href="#"><h:outputText value="#{postCompletoController.postVo.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{postCompletoController.postVo.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
 
             <div class="form-group d-flex justify-content-center">
-                <h:form rendered="#{postCompletoController.postsVo.autor.id == acessoWeb.usuario.id}">
+                <h:form rendered="#{postCompletoController.postVo.autor.id == acessoWeb.usuario.id}">
                     <p:commandButton class="btn btn-danger" value="Excluir Post" rendered="#{acessoWeb.usuarioLogado}" action="${postCompletoController.excluirPost()}"/>
-                    <p:commandButton class="btn btn-primary" value="ALTERAR" action="#{alterarPostController.flowAlterarPost(postCompletoController.postsVo.id)}"/>
+                    <p:commandButton class="btn btn-primary" value="ALTERAR" action="#{alterarPostController.flowAlterarPost(postCompletoController.postVo.id)}"/>
                 </h:form>              
             </div>
 
