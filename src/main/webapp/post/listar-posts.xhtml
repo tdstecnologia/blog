@@ -24,7 +24,7 @@
                         <h:outputText value="#{post.resumo}" ></h:outputText>
                     </h5>
 
-                    <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy, 'às' HH:mm " /></h:outputFormat></p>
+                    <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="#{initParam.dataformato}" timeZone="#{initParam.timezone}" /></h:outputFormat></p>
                 </div>
                 <hr/>
             </ui:repeat>
