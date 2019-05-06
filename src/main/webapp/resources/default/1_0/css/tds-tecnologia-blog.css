@@ -1,6 +1,14 @@
 /* 
     sobrescreve os css original para estilo dos menus
 */
+
+
+/* Altera a cor de fundo da navbar */
+#mainNav{
+    background-color: #333a8c;
+}
+
+/* Estilo para os links do menu*/
 #mainNav .navbar-nav > li.nav-item a {
     padding: 10px 20px;
     color: #fff;
@@ -11,4 +19,9 @@
     font-weight: 800;
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+/* cor botão navbar modo smartphone*/
+#mainNav .navbar-toggler{
+    color: whitesmoke;
 }
