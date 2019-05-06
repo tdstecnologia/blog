@@ -38,12 +38,13 @@ public abstract class AbstractBe {
         }
     }
 
-    protected void close(final EntityManager em) {
+    protected void close(EntityManager em) {
         if (em != null) {
             if (em.isOpen()) {
                 if (em.hashCode() == this.em.hashCode()) {
-                    System.out.println("Conexão fechada: " + em.hashCode());
                     em.close();
+                    System.out.println("Conexão fechada: "+em.isOpen()+" : " + em.hashCode());
+                    em = null;
                 }
             }
         }
