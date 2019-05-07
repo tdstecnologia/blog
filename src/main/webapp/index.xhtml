@@ -4,9 +4,25 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/WEB-INF/templates/default-template.xhtml">
+
+        <ui:define name="banner-corpo">
+            <h:form>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
+                        <label>Pesquise digitando pelo menos 4 letras</label>
+                        <h:inputText value="#{indexController.textoPesquisa}" class="form-control cmp-pesquisar" style="background: none;" pt:placeholder="Pesquise digitando pelo menos 4 letras">
+                            <f:ajax listener="#{indexController.listarPostPorTexto()}" event="keyup" render="pnl-listagem-posts"  ></f:ajax>
+                        </h:inputText>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+
+
 
         <ui:define name="body" >
             <div class="control-group">
@@ -14,26 +30,26 @@
                     <p:autoUpdate />
                 </p:messages>
             </div>
-            <ui:repeat var="post" value="#{indexController.postsVo.listVo}">
-                <div class="post-preview">
-                    <h:form>
-                        <h:commandLink action="#{indexController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
-                            <h2 class="post-title">
-                                <h:outputText value="#{post.titulo}" ></h:outputText>
-                            </h2>
-                        </h:commandLink>
-                    </h:form>
-                    <h5 class="post-meta">
-                        <h:outputText value="#{post.resumo}" ></h:outputText>
-                    </h5>
-                     <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="#{initParam.dataformato}" timeZone="#{initParam.timezone}" /></h:outputFormat></p>
-                </div>
-                <hr/>
-            </ui:repeat>
-
+            <h:panelGroup id="pnl-listagem-posts">
+                <ui:repeat var="post" value="#{indexController.postsVo.listVo}">
+                    <div class="post-preview">
+                        <h:form>
+                            <h:commandLink action="#{postCompletoController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
+                                <h2 class="post-title">
+                                    <h:outputText value="#{post.titulo}" ></h:outputText>
+                                </h2>
+                            </h:commandLink>
+                        </h:form>
+                        <h5 class="post-meta">
+                            <h:outputText value="#{post.resumo}" ></h:outputText>
+                        </h5>
+                        <p class="post-meta">Por <a href="#"><h:outputText value="#{post.autor.nome}" ></h:outputText></a> , publicado em <h:outputFormat value="#{post.dataPublicacao}" ><f:convertDateTime pattern="#{initParam.dataformato}" timeZone="#{initParam.timezone}" /></h:outputFormat></p>
+                    </div>
+                    <hr/>
+                </ui:repeat>
+            </h:panelGroup>
             <!-- Pager -->
             <div class="clearfix">
-                <a class="btn btn-primary float-right" href="#">Mais Posts &rarr;</a>
             </div>
         </ui:define>
 

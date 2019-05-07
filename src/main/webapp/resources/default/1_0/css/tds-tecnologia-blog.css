@@ -26,7 +26,17 @@
     color: whitesmoke;
 }
 
-/* cor nomce usuario logado modo smartphone*/
+/* cor nome usuario logado modo smartphone*/
 #mainNav .navbar-brand {
     color: whitesmoke;
+}
+
+/* cor texto de pesquisa*/
+.cmp-pesquisar {
+    color: white;
+}
+
+/* cor texto de pesquisa*/
+.cmp-pesquisar:focus {
+    color: white;
 }

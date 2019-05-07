@@ -16,13 +16,11 @@ import javax.inject.Named;
 @ViewScoped
 public class IndexController implements Serializable {
 
+    private String textoPesquisa;
     private PostVo postsVo;
     private PostBe postBe;
-    private FacesContext fc = FacesContext.getCurrentInstance();
 
     public IndexController() {
-        Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-        System.out.println("POST ID: "+params.get("post_id"));
     }
 
     @PostConstruct
@@ -40,12 +38,29 @@ public class IndexController implements Serializable {
         }
     }
 
+    public void listarPostPorTexto() {
+        try {
+            System.out.println("Pesquisando por " + getTextoPesquisa());
+            if (getTextoPesquisa().isEmpty()) {
+                listarPost();
+            } else if (getTextoPesquisa().length() > 3) {
+                getPostsVo().setListVo(getPostBe().listarPostsPorTexto(getTextoPesquisa()).getListVo());
+            }
+        } catch (DaoException e) {
+            Jsf.Msg.erro(e);
+        }
+    }
+
     public String flowIndex() {
         return "/index";
     }
 
-    public String flowVisualizarPostCompleto(final String postId) {
-        return "/post/post-completo?faces-redirect=true&post_id=".concat(postId);
+    public String getTextoPesquisa() {
+        return textoPesquisa;
+    }
+
+    public void setTextoPesquisa(String textoPesquisa) {
+        this.textoPesquisa = textoPesquisa;
     }
 
     public PostVo getPostsVo() {
@@ -58,10 +73,6 @@ public class IndexController implements Serializable {
 
     public PostBe getPostBe() {
         return postBe;
-    }
-
-    public void setPostBe(PostBe postBe) {
-        this.postBe = postBe;
     }
 
 }

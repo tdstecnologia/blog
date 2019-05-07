@@ -37,7 +37,7 @@ public class PostBe extends AbstractBe {
             close(em);
         }
     }
-    
+
     public void salvarAlteracaoPost(PostVo postVo) throws Exception {
         EntityManager em = getManager();
         EntityTransaction tx = getTransacao();
@@ -72,8 +72,22 @@ public class PostBe extends AbstractBe {
         }
         return posts;
     }
-    
-    
+
+    public PostVo listarPostsPorTexto(final String param) throws DaoException {
+        EntityManager em = getManager();
+        PostVo postVo = new PostVo();
+        try {
+            postVo = new PostDao(em).listarPostsPorTexto(param);
+        } catch (DaoException e) {
+            throw e;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            close(em);
+        }
+        return postVo;
+    }
+
     public PostVo listarMeusPosts(final UsuarioVo usuarioVo) throws DaoException {
         EntityManager em = getManager();
         PostVo posts = new PostVo();
@@ -88,7 +102,7 @@ public class PostBe extends AbstractBe {
         }
         return posts;
     }
-    
+
     public PostVo consultarPostPorId(final PostVo postVo) throws DaoException {
         EntityManager em = getManager();
         PostVo posts = new PostVo();
@@ -103,7 +117,7 @@ public class PostBe extends AbstractBe {
         }
         return posts;
     }
-    
+
     public PostVo consultarPostPorIdAutor(final PostVo param) throws DaoException {
         EntityManager em = getManager();
         PostVo post = new PostVo();
@@ -120,7 +134,7 @@ public class PostBe extends AbstractBe {
         return post;
     }
 
-     public void excluirPost(final PostVo postVo) throws Exception {
+    public void excluirPost(final PostVo postVo) throws Exception {
         EntityManager em = getManager();
         EntityTransaction tx = getTransacao();
         try {
@@ -138,7 +152,7 @@ public class PostBe extends AbstractBe {
             close(em);
         }
     }
-    
+
     public PostDao getPostDao() {
         return postDao;
     }

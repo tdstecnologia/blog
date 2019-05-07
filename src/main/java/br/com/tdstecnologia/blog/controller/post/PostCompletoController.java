@@ -35,7 +35,7 @@ public class PostCompletoController implements Serializable {
             Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
             PostVo param = new PostVo();
             param.setId(Long.valueOf(params.get("post_id")));
-          
+
             setPostVo(getPostBe().consultarPostPorId(param));
         } catch (DaoException e) {
             Jsf.Msg.erro(e);
@@ -50,6 +50,10 @@ public class PostCompletoController implements Serializable {
             Jsf.Msg.erro(e.getMessage());
         }
         return null;
+    }
+
+    public String flowVisualizarPostCompleto(final String postId) {
+        return "/post/post-completo?faces-redirect=true&post_id=".concat(postId);
     }
 
     public PostVo getPostVo() {

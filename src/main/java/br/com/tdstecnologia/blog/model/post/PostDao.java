@@ -77,6 +77,20 @@ public class PostDao {
             throw new DaoException(e);
         }
     }
+    
+    public PostVo listarPostsPorTexto(final String param) throws DaoException {
+        try {
+            TypedQuery query = em.createQuery("SELECT p FROM PostVo p WHERE LOWER(p.titulo) like :texto", PostVo.class);
+            query.setParameter("texto", "%".concat(param.toLowerCase()).concat("%"));
+            List<PostVo> posts = query.getResultList();
+            PostVo postVo = new PostVo();
+            postVo.setListVo(posts);
+            System.out.println("POSTS: " + postVo.getListVo().size());
+            return postVo;
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+    }
 
     public void excluirPost(final PostVo postVo) throws DaoException {
         try {

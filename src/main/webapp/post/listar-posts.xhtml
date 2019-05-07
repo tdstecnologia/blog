@@ -14,7 +14,7 @@
             <ui:repeat var="post" value="#{listarPostController.postVo.listVo}">
                 <div class="post-preview">
                     <h:form>
-                        <h:commandLink action="#{postController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
+                        <h:commandLink action="#{postCompletoController.flowVisualizarPostCompleto(post.id)}" immediate="true" >
                             <h2 class="post-title">
                                 <h:outputText value="#{post.titulo}" ></h:outputText>
                             </h2>
