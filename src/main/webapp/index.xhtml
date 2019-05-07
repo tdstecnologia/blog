@@ -7,6 +7,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
+
+
     <ui:composition template="/WEB-INF/templates/default-template.xhtml">
 
         <ui:define name="banner-corpo">
@@ -15,8 +17,15 @@
                     <div class="form-group floating-label-form-group controls floating-label-form-group-with-value">
                         <label>Pesquise digitando pelo menos 4 letras</label>
                         <h:inputText value="#{indexController.textoPesquisa}" class="form-control cmp-pesquisar" style="background: none;" pt:placeholder="Pesquise digitando pelo menos 4 letras">
-                            <f:ajax listener="#{indexController.listarPostPorTexto()}" event="keyup" render="pnl-listagem-posts"  ></f:ajax>
-                        </h:inputText>
+                            <f:ajax listener="#{indexController.listarPostPorTexto()}" event="keyup" render="pnl-listagem-posts" onevent="loading" />
+                        </h:inputText>  
+                    </div>
+                </div>
+                <div id="loading-status-ajax-request" class="control-group" style="visibility: hidden ;">
+                    <div class="form-group d-flex justify-content-center">
+                        <div class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </h:form>

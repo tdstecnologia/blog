@@ -33,7 +33,7 @@ public class IndexController implements Serializable {
     public void listarPost() {
         try {
             getPostsVo().setListVo(getPostBe().listarPosts().getListVo());
-        } catch (DaoException e) {
+        } catch (Exception e) {
             Jsf.Msg.erro(e);
         }
     }
@@ -46,7 +46,7 @@ public class IndexController implements Serializable {
             } else if (getTextoPesquisa().length() > 3) {
                 getPostsVo().setListVo(getPostBe().listarPostsPorTexto(getTextoPesquisa()).getListVo());
             }
-        } catch (DaoException e) {
+        } catch (Exception e) {
             Jsf.Msg.erro(e);
         }
     }
