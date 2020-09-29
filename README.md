@@ -5,7 +5,7 @@
 
 1 - Baixe e instale o software Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli#download-and-install
 
-2 - Gerar o jar do projeto com o comando 
+2 - Gere o jar do projeto com o comando 
 ```
 mvn package
 ```
@@ -22,6 +22,11 @@ web: java -jar target/endorsed/webapp-runner.jar --port 8080 target/*.war
 ```
 heroku local
 ```
+
+5 - Caso o banco de dados não for criado automaticamente, crie o schema blog
+e execute os sql abaixo para criar as tabelas.
+
+6 - 
 
 ## Banco de PostgreSQL
 
